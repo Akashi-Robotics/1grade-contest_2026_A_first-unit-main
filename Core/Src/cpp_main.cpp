@@ -64,10 +64,10 @@ int cpp_main()
     };
 
     Vel_PID pid[4] = {
-        Vel_PID(0.001f, 0.008f, 0.0001f),
-        Vel_PID(0.001f, 0.008f, 0.0001f),
-        Vel_PID(0.001f, 0.008f, 0.0001f),
-        Vel_PID(0.001f, 0.008f, 0.0001f)
+        Vel_PID(0.0015f, 0.008f, 0.0002f),
+        Vel_PID(0.0015f, 0.008f, 0.0002f),
+        Vel_PID(0.0015f, 0.008f, 0.0002f),
+        Vel_PID(0.0015f, 0.008f, 0.0002f)
     };
 
     float resolution[4];
@@ -93,6 +93,7 @@ int cpp_main()
 
     while (true)
     {
+        printf("%d   ", ctler.is_alive());
         //get information
         for(int i = 0; i < 4; i++)
         {
@@ -107,10 +108,10 @@ int cpp_main()
         if((Vy < 10) && (Vy > -10)) Vy = 0;
         Omega = (ctler.get_L2() - ctler.get_R2());
 
-        printf("%4d   ", static_cast<int>(yaw * 100));
-        printf("%4d   ", static_cast<int>(Vx));
-        printf("%4d   ", static_cast<int>(Vy));
-        printf("%4d\n", static_cast<int>(Omega));
+        // printf("%4d   ", static_cast<int>(yaw * 100));
+        // printf("%4d   ", static_cast<int>(Vx));
+        // printf("%4d   ", static_cast<int>(Vy));
+        // printf("%4d\n", static_cast<int>(Omega));
 
         // bno.get_yaw_angle();
         // yaw = bno.yaw_angle;;
