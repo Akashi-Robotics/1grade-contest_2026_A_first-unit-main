@@ -29,11 +29,8 @@ int cpp_main()
 
     main_timer::activate();
 
-    HAL_FDCAN_Start(&hfdcan1);
     HAL_FDCAN_Start(&hfdcan2);
-    HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0);
     HAL_FDCAN_ActivateNotification(&hfdcan2, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0);
-    CAN_ns::set_all_pass_filter(&hfdcan1);
     CAN_ns::set_all_pass_filter(&hfdcan2);
     ACS_Wireless_920MHz::ACS_Device ctler(&hfdcan2, 3);
 

@@ -11,6 +11,7 @@ union sensor{
 
 class HC_SR04{
     public:
+        HC_SR04();
         float get_distance();
         void set_distance(uint8_t data0, uint8_t data1);
     private:
