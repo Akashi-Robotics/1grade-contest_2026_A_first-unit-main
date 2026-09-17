@@ -7,6 +7,8 @@
 #include "BNO.hpp"
 #include "i2c.h"
 #include "math.h"
+#include "stm32g474xx.h"
+#include "stm32g4xx_hal_gpio.h"
 #include "stm32g4xx_hal_tim.h"
 
 Driving::Driving() 
@@ -16,10 +18,10 @@ Driving::Driving()
         Motor(&htim2, TIM_CHANNEL_1, &htim2, TIM_CHANNEL_2, POSITIVE, POSITIVE), //Motor2
         Motor(&htim2, TIM_CHANNEL_3, &htim2, TIM_CHANNEL_4, POSITIVE, POSITIVE)}, //Motor3
   bno(&hi2c3),
-  encoder{Encoder_SINGLE_Interrupt(GPIOB, GPIO_PIN_9, GPIOA, GPIO_PIN_7, 512, POSITIVE),  //Encoder0
-          Encoder_SINGLE_Interrupt(GPIOB, GPIO_PIN_13, GPIOB, GPIO_PIN_0, 256, POSITIVE), //Encoder2
-          Encoder_SINGLE_Interrupt(GPIOB, GPIO_PIN_2, GPIOC, GPIO_PIN_5, 512, POSITIVE), //Encoder1
-          Encoder_SINGLE_Interrupt(GPIOA, GPIO_PIN_4, GPIOB, GPIO_PIN_1, 512, POSITIVE)}, //Encoder3
+  encoder{Encoder_SINGLE_Interrupt(GPIOB, GPIO_PIN_2, GPIOA, GPIO_PIN_1, 512, POSITIVE),  //Encoder0
+          Encoder_SINGLE_Interrupt(GPIOA, GPIO_PIN_4, GPIOB, GPIO_PIN_0, 512, POSITIVE), //Encoder2
+          Encoder_SINGLE_Interrupt(GPIOB, GPIO_PIN_13, GPIOC, GPIO_PIN_5, 512, POSITIVE), //Encoder1
+          Encoder_SINGLE_Interrupt(GPIOB, GPIO_PIN_9, GPIOA, GPIO_PIN_7, 512, POSITIVE)}, //Encoder3
     pid{Vel_PID(0.0015f, 0.008f, 0.0002f),
         Vel_PID(0.0015f, 0.008f, 0.0002f),
         Vel_PID(0.0015f, 0.008f, 0.0002f),

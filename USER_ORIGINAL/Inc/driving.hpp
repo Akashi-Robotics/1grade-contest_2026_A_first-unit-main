@@ -13,7 +13,6 @@ class Driving{
     public:
         Driving();
         void set_velocity(double Vx_, double Vy_);
-        void update();
     private:
         double Vx;
         double Vy;
