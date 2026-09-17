@@ -19,7 +19,7 @@ class Driving{
         double Vy;
         double yaw;
         double value[4];
-        double target[4];
+        double target[4] = {0.0, 0.0, 0.0, 0.0};
         Motor motor[4];
         BNO055 bno;
         Encoder_SINGLE_Interrupt encoder[4];

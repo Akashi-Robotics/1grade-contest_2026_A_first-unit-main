@@ -34,8 +34,8 @@ int cpp_main()
     timer.reset();
     timer.start();
 
-    float Vx = 0;
-    float Vy = 0;
+    int Vx = 0;
+    int Vy = 0;
 
     main_timer::activate();
 
