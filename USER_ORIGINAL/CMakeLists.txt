@@ -4,6 +4,7 @@ target_sources(USER_ORIGINAL_Lib PRIVATE
     Src/UserOriginal.cpp
     # write your source files here
     Src/driving.cpp
+    Src/HC_SR04.cpp
 )
 
 target_include_directories(USER_ORIGINAL_Lib PUBLIC 
