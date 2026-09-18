@@ -10,9 +10,9 @@
 #include "BNO.hpp"
 #include "i2c.h"
 #include "driving.hpp"
-#include "HC_SR04.hpp"
+// #include "HC_SR04.hpp"
 
-HC_SR04 hc_sr04;
+// HC_SR04 hc_sr04;
 
 int cpp_main()
 {
@@ -26,6 +26,7 @@ int cpp_main()
 
     int Vx = 0;
     int Vy = 0;
+    bool R1 = 0;
 
     main_timer::activate();
 
@@ -43,9 +44,10 @@ int cpp_main()
         // control omni
         Vx = ctler.get_Lx() - 128;
         Vy = - (ctler.get_Ly() - 128);
+        R1 = ctler.get_R1();
         if((Vx < 10) && (Vx > -10)) Vx = 0;
         if((Vy < 10) && (Vy > -10)) Vy = 0;
-        driving.set_velocity(Vx, Vy);
+        driving.set_velocity(Vx, Vy, R1);
 
         elapsed_time = timer.read();
         while(timer.read() - elapsed_time < cycle::dt);
@@ -54,11 +56,11 @@ int cpp_main()
     return 0;
 }
 
-void USER_HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan) // 受信の際はこの関数が呼び出されるのでここにコードを書いてください。重い処理を書かないように。
-{
-    if(hfdcan == &hfdcan1 && RxMessage.RxHeader.Identifier == 0x123) // can1から0x123のメッセージが来た時に以下を実行
-    {
-        hc_sr04.set_distance(RxMessage.RxData[0], RxMessage.RxData[1]); // 受信したデータをHC_SR04クラスのset_distance関数に渡す
-    }
+// void USER_HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan) // 受信の際はこの関数が呼び出されるのでここにコードを書いてください。重い処理を書かないように。
+// {
+//     if(hfdcan == &hfdcan1 && RxMessage.RxHeader.Identifier == 0x123) // can1から0x123のメッセージが来た時に以下を実行
+//     {
+//         hc_sr04.set_distance(RxMessage.RxData[0], RxMessage.RxData[1]); // 受信したデータをHC_SR04クラスのset_distance関数に渡す
+//     }
     
-}
+// }

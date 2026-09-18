@@ -12,10 +12,11 @@ class Driving{
     
     public:
         Driving();
-        void set_velocity(double Vx_, double Vy_);
+        void set_velocity(double Vx_, double Vy_, bool R1_);
     private:
         double Vx;
         double Vy;
+        bool R1;
         double yaw;
         double value[4];
         double target[4] = {0.0, 0.0, 0.0, 0.0};
