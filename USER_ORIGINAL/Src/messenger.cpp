@@ -5,11 +5,11 @@
 #include "CAN.hpp"
 #include "stm32g4xx_hal_fdcan.h"
 
-Messenger::Messenger() : packet{0} {
+Messenger::Messenger() : packet{0,1,1} {
     HAL_FDCAN_Start(&hfdcan1);
     HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0);
     CAN_ns::set_all_pass_filter(&hfdcan1);
-} 
+}                                                       //CANを開始 シリンダを開放 ベルコンを待機位置に移動
 
 //-------------------------------define Air------------------------------//
 void Messenger::cylinder(CYLINDER_STATE state)
