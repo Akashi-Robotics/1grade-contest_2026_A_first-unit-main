@@ -6,23 +6,34 @@
 // Your code here
 class Messenger{
     public:
+        enum CYLINDER_OPERATION_MODE{
+            RIGHT,
+            LEFT
+        };
         enum CYLINDER_STATE{
             OPEN,
-            CLOSE
+            CLOSE,
+            REVERSE
+        };
+        enum CONVEYOR_OPERATION_MODE{
+            TALL,
+            RIGHT,
+            LEFT
         };
         enum CONVEYOR_STATE{
             SET,
             HOLD,
-            SHOOT
+            SHOOT,
+            PLUS,
+            MINUS
         };
         Messenger();
-            void cylinder(CYLINDER_STATE state);
-            void small_conveyor(CONVEYOR_STATE state);
-            void big_conveyor(CONVEYOR_STATE state);
+            void cylinder(CYLINDER_OPERATION_MODE mode, CYLINDER_STATE state);
+            void conveyor(CONVEYOR_OPERATION_MODE mode, CONVEYOR_STATE state);
         
     private:
         // Add any private members or methods if needed
-        uint8_t packet[3];
+        uint8_t packet[5];
         void send();
 };
 
