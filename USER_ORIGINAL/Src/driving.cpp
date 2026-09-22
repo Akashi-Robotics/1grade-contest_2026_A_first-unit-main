@@ -46,7 +46,7 @@ void Driving::set_velocity(double Vx_, double Vy_, bool R1_) {
     for(int i = 0; i < 4; i++){
             encoder[i].update();
             value[i] = static_cast<double>(encoder[i].get_omega()); // Update encoder values
-            printf("%5d", static_cast<int>(value[i] * 100.0));
+            // printf("%5d", static_cast<int>(value[i] * 100.0));
 
             target[i] = (-(Vx / 128.0f) * sin(theta[i] + yaw) + (Vy / 128.0f) * cos(theta[i] + yaw) - R * yaw) / r; // Calculate target values
             if(R1 == true){
@@ -55,6 +55,6 @@ void Driving::set_velocity(double Vx_, double Vy_, bool R1_) {
             pid[i].Input(target[i], value[i]); // Update PID controller
             motor[i].set_value(static_cast<int32_t>(pid[i].Output() * resolution[i])); // Set motor values
     }
-    printf("\n");
+    // printf("\n");
     
 }
